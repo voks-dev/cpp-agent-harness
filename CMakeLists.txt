@@ -41,5 +41,12 @@ add_executable(cpp-agent-harness
 
 target_include_directories(cpp-agent-harness PRIVATE src)
 
+target_link_libraries(cpp-agent-harness PRIVATE
+    nlohmann_json::nlohmann_json
+    httplib::httplib)
+
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+include(ClangFormat)
+
 enable_testing()
 add_subdirectory(tests)
