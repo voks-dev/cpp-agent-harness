@@ -27,22 +27,22 @@ struct Response {
   std::string doneReason{};
 };
 
-void to_json(nlohmann::json &j, const Message &message) {
+inline void to_json(nlohmann::json &j, const Message &message) {
   j = nlohmann::json{{"role", message.role}, {"content", message.content}};
 }
 
-void from_json(const nlohmann::json &j, Message &message) {
+inline void from_json(const nlohmann::json &j, Message &message) {
   j.at("role").get_to(message.role);
   j.at("content").get_to(message.content);
 }
 
-void to_json(nlohmann::json &j, const Post &post) {
+inline void to_json(nlohmann::json &j, const Post &post) {
   j = nlohmann::json{{"model", post.model},
                      {"message", post.message},
                      {"stream", post.stream}};
 }
 
-void from_json(const nlohmann::json &j, Response &response) {
+inline void from_json(const nlohmann::json &j, Response &response) {
   j.at("model").get_to(response.model);
   j.at("created_at").get_to(response.createdAt);
   j.at("message").get_to(response.message);
